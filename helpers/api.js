@@ -4,6 +4,11 @@ module.exports = async (ctx, next) => {
   try {
     await next()
 
+    if (!ctx.result) {
+      ctx.body = 'make method post pak, jangan di get'
+      return
+    }
+
     if (!ctx.body) {
       ctx.assert(ctx.result, 404, 'Not Found')
 
@@ -45,3 +50,4 @@ module.exports = async (ctx, next) => {
     }
   }
 }
+
